@@ -11,6 +11,8 @@
   <body>
     <div id="app">
         <div class="nav-bar"></div>
+        <div class="cart">Cart: {{cart}} </div>
+
         <div class="product-display">
         <div class="product-container">
          <div class="product-image"> 
@@ -20,9 +22,20 @@
          </div>
          <div class="product-info"> 
             <h1>{{ product }}</h1>
+            <ul>
+                <li v-for = "detail in details"> {{ detail }} </li>
+                
+            </ul>
+            <ul>
+                <li v-for = "size in sizes"> {{size}} </li>
+            </ul>
+            <ul>
+                <li v-for = "varient in varients" :key="varient.id" @mouseover="updateImage(varient.image)"> {{ varient.color }} </li>
+            </ul>
             <p v-show = "onSale" >On Sale</p>
             <p v-if = "inventory > 10">In Stock</p>
             <p v-else = "inventory =< 10 && inventory > 0">All most sold out !</p>
+            <button class="button" @click="addToCart">Add To Cart</button>
             <!-- <p v-else>Out Of Stock</p> -->
         </div>
         </div>
