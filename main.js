@@ -4,7 +4,9 @@ const app =  Vue.createApp({
             product: 'Boots',
             image: './assets/images/socks_green.jpg',
             // url: 'https://github.com/ashishoo7/product',
-            inStock:false
+            // inStock:false
+            inventory: 10,
+            onSale: false
         }
     }
     })
