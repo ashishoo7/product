@@ -6,7 +6,7 @@ const app =  Vue.createApp({
             image: './assets/images/socks_green.jpg',
             // url: 'https://github.com/ashishoo7/product',
             // inStock:false
-            inventory: 10,
+            inStock: true,
             onSale: false,
             details: ['50% Cotton','20% Wool', '30% Polyester'],
             sizes: ['XS: EUR','S USA', 'M INA', 'L PAK', 'XL UK'],

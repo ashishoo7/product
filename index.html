@@ -17,7 +17,7 @@
         <div class="product-container">
          <div class="product-image"> 
          <img :src="image" alt="socks" 
-         :class= "{'out-of-stock-img':!(inventory > 10)}">
+         :class= "{'out-of-stock-img':!(inStock)}">
          
         <!-- <a :href="url">click here</a> -->
         <!-- <img v-bind:src="image" alt="socks"> -->
@@ -40,11 +40,11 @@
             </div>
             </ul>
             <p v-show = "onSale" >On Sale</p>
-            <p v-if = "inventory > 10">In Stock</p>
-            <p v-else = "inventory =< 10 && inventory > 0">All most sold out !</p>
+            <p v-if = "inStock">In Stock</p>
+            <p v-else>All most sold out !</p>
             <button class="button"
-            :class="{'disabledButton': !(inventory > 10)}"
-            :disabled = '!(inventory > 10)'
+            :class="{'disabledButton': !(inStock)}"
+            :disabled = '!(inStock)'
             @click="addToCart">Add To Cart</button>
             <!-- <p v-else>Out Of Stock</p> -->
         </div>
