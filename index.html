@@ -23,7 +23,7 @@
         <!-- <img v-bind:src="image" alt="socks"> -->
          </div>
          <div class="product-info"> 
-            <h1>{{ product }}</h1>
+            <h1>{{brand  + ' ' + product + onSale}}</h1>
             <ul>
                 <li v-for = "detail in details"> {{ detail }} </li>
                 
@@ -32,14 +32,14 @@
                 <li v-for = "size in sizes"> {{size}} </li>
             </ul>
             <div
-                v-for = "varient in varients" 
+                v-for = "(varient, index) in varients" 
                 :key="varient.id" 
-                @mouseover="updateImage(varient.image)" 
+                @mouseover="updateVarient(index)" 
                 class="color-circle "
                 :style="{backgroundColor:varient.color}" > 
             </div>
             </ul>
-            <p v-show = "onSale" >On Sale</p>
+            <!-- <p v-show = "onSale" >On Sale</p> -->
             <p v-if = "inStock">In Stock</p>
             <p v-else>All most sold out !</p>
             <button class="button"
