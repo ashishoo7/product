@@ -16,7 +16,9 @@
         <div class="product-display">
         <div class="product-container">
          <div class="product-image"> 
-        <img :src="image" alt="socks">
+         <img :src="image" alt="socks" 
+         :class= "{'out-of-stock-img':!(inventory > 10)}">
+         
         <!-- <a :href="url">click here</a> -->
         <!-- <img v-bind:src="image" alt="socks"> -->
          </div>
@@ -29,13 +31,21 @@
             <ul>
                 <li v-for = "size in sizes"> {{size}} </li>
             </ul>
-            <ul>
-                <li v-for = "varient in varients" :key="varient.id" @mouseover="updateImage(varient.image)"> {{ varient.color }} </li>
+            <div
+                v-for = "varient in varients" 
+                :key="varient.id" 
+                @mouseover="updateImage(varient.image)" 
+                class="color-circle "
+                :style="{backgroundColor:varient.color}" > 
+            </div>
             </ul>
             <p v-show = "onSale" >On Sale</p>
             <p v-if = "inventory > 10">In Stock</p>
             <p v-else = "inventory =< 10 && inventory > 0">All most sold out !</p>
-            <button class="button" @click="addToCart">Add To Cart</button>
+            <button class="button"
+            :class="{'disabledButton': !(inventory > 10)}"
+            :disabled = '!(inventory > 10)'
+            @click="addToCart">Add To Cart</button>
             <!-- <p v-else>Out Of Stock</p> -->
         </div>
         </div>
