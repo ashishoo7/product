@@ -38,11 +38,18 @@ template:
     <p v-if = "inStock">In Stock</p>
     <p>Shipping: {{ shipping  }}</p>
     <p v-else>All most sold out !</p>
+    <ul>
+    <li v-for = "description in descriptions"> {{description}} </li>
+    </ul>
+    
     <button class="button"
     :class="{'disabledButton': !(inStock)}"
     :disabled = '!(inStock)'
     @click="addToCart">Add To Cart</button>
     <!-- <p v-else>Out Of Stock</p> -->
+
+    <button class="button"
+    @click="removeCart">Remove Iteam</button>
 </div>
 </div>
 </div>`,
@@ -59,7 +66,7 @@ data(){
         onSale: true,
         
         details: ['50% Cotton','20% Wool', '30% Polyester'],
-        sizes: ['XS: EUR','S USA', 'M INA', 'L PAK', 'XL UK'],
+        sizes: ['XS','S', 'M', 'L', 'XL'],
         varients:[
             {id:224 , color:'blue', image: './assets/images/socks_blue.jpg', quantity:50},
             {id:225, color:'green', image: './assets/images/socks_green.jpg ', quantity:0}, 
@@ -68,8 +75,11 @@ data(){
 },
 methods:{
 
+    removeCart(){
+        this.$emit('remove-cart', this.varients[this.selectedVarient].id) 
+    },
 addToCart(){
-    this.cart +=1;
+    this.$emit('add-to-cart', this.varients[this.selectedVarient].id) 
 },
 updateVarient(index){
   this.selectedVarient=index 
