@@ -52,6 +52,12 @@ template:
     @click="removeCart">Remove Iteam</button>
 </div>
 </div>
+<review-list :reviews = "reviews" > </review-list>
+<review-form @review-submitted="addReview"> 
+<review-list v-if="reviews.length" :reviews="reviews"></review-list>
+    <review-form @review-submitted="addReview"></review-form>
+    </review-form>
+
 </div>`,
 
 data(){
@@ -70,7 +76,8 @@ data(){
         varients:[
             {id:224 , color:'blue', image: './assets/images/socks_blue.jpg', quantity:50},
             {id:225, color:'green', image: './assets/images/socks_green.jpg ', quantity:0}, 
-        ]
+        ],
+        reviews:[]
     }
 },
 methods:{
@@ -80,6 +87,9 @@ methods:{
     },
 addToCart(){
     this.$emit('add-to-cart', this.varients[this.selectedVarient].id) 
+},
+addReview(review){
+    this.reviews.push(review)
 },
 updateVarient(index){
   this.selectedVarient=index 
