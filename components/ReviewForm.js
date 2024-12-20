@@ -58,7 +58,7 @@ app.component('review-form', {
         this.name = ''
         this.review = ''
         this.rating = null
-        this.recommend = null // solution
+        this.recommend = null // ashish new comment
   
       }
     }
